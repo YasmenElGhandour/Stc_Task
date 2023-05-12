@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.postNewItem.fragments.AddFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/addImgCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
+        android:layout_margin="30dp"
+
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardForegroundColor="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+    <ImageView
+        android:id="@+id/addImg"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/default_image"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+    </ImageView>
+    </com.google.android.material.card.MaterialCardView>
+
+  <EditText
+      android:id="@+id/addtitleEdt"
+      android:background="@drawable/shap_edt_gray_bg"
+      android:layout_width="match_parent"
+      android:layout_height="48dp"
+      android:textColor="@color/white"
+      android:textColorHint="@color/white"
+      android:hint="@string/add_title"
+      android:layout_margin="30dp"
+      android:paddingStart="8dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/addImgCard"
+      app:layout_constraintEnd_toEndOf="parent"
+      >
+
+  </EditText>
+
+    <TextView
+        android:id="@+id/addBtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addtitleEdt"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="30dp"
+        android:background="@drawable/shap_button_red_bg"
+        android:text="@string/save"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+
+        ></TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

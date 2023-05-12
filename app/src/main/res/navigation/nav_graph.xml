@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.ibuild.stc_task_preinterview.ui.postNewItem.fragments.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.ibuild.stc_task_preinterview.ui.list.fragments.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <argument android:name="Result"
+            app:argType="com.ibuild.stc_task_preinterview.data.model.PostsResult" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.ibuild.stc_task_preinterview.ui.list.fragments.ListFragment"
+        android:label="ListFragment"
+        tools:layout="@layout/fragment_list"
+        >
+        <action
+            android:id="@+id/action_listFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            />
+        <action
+            android:id="@+id/action_listFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
+</navigation>
+

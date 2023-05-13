@@ -1,5 +1,6 @@
 package com.ibuild.stc_task_preinterview.data.Api
 
+import com.bumptech.glide.load.engine.Resource
 import com.ibuild.stc_task_preinterview.data.model.Posts
 import com.ibuild.stc_task_preinterview.data.model.PostsResult
 import okhttp3.MultipartBody
@@ -13,6 +14,7 @@ interface ApiServices {
     suspend fun getPosts(@Query("page") page: Int): Response<Posts>
     @Multipart
     @POST("api/posts")
-    suspend fun addNewPost(@Query("title") title: String, @Query("details") details: String, @Part image: MultipartBody.Part?): Response<PostsResult>
+    suspend fun addNewPost(@Query("title") title: String, @Query("details") details: String,
+                           @Part image: MultipartBody.Part?): Response<PostsResult>
 
 }

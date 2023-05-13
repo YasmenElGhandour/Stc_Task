@@ -2,7 +2,7 @@
     <string name="app_name">Stc_Task_PreInterview</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="add_title">Add Title</string>
+    <string name="add_title">please enter title</string>
     <string name="save">Save</string>
     <string name="take_picture">Take Picture</string>
     <string name="open_gallery">Open Gallery</string>

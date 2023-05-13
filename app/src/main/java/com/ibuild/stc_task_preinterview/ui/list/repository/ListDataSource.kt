@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.bumptech.glide.load.engine.Resource
 import com.ibuild.stc_task_preinterview.data.Api.ApiServices
 import com.ibuild.stc_task_preinterview.data.model.PostsResult
 import javax.inject.Inject
@@ -23,15 +24,14 @@ import javax.inject.Inject
 
         return try {
 
-            var data = apiServices.getPosts(page)
-            Log.d("TAG", "load: ${data.body()}")
+            var response = apiServices.getPosts(page)
+
 
             LoadResult.Page(
-                data = data.body()?.posts!!,
+                data = response.body()?.posts!!,
                 prevKey = if (page == 1) null else page - 1 ,
-                nextKey = if (data.body()?.posts?.isEmpty()!!) null else page + 1
+                nextKey = if (response.body()?.posts?.isEmpty()!!) null else page + 1
             )
-
 
 
         } catch (e: Exception) {
@@ -39,9 +39,6 @@ import javax.inject.Inject
             LoadResult.Error(e)
 
         }
-
-
     }
-
 
 }

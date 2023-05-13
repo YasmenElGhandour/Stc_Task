@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class AddItemRepository @Inject constructor(val  apiServices: ApiServices)
 {
-    suspend fun addNewPost(title: String,details: String, image: MultipartBody.Part) = apiServices.addNewPost(
-        title = title, details = details,
-        image =image)
+
+    suspend fun addNewPost(title: String,details: String, image: MultipartBody.Part) =
+        apiServices.addNewPost(title = title, details = details, image =image)
 
 }

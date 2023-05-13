@@ -28,7 +28,7 @@ import javax.inject.Inject
 
             LoadResult.Page(
                 data = data.body()?.posts!!,
-                prevKey = if (page == 1) null else page - 1,
+                prevKey = if (page == 1) null else page - 1 ,
                 nextKey = if (data.body()?.posts?.isEmpty()!!) null else page + 1
             )
 

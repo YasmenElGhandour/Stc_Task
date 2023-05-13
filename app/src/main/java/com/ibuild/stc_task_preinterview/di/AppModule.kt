@@ -78,7 +78,7 @@ object AppModule {
             .retryOnConnectionFailure(true)
             .addInterceptor(loggingInterceptor)
             .cache(provideCache(context))
-            .addNetworkInterceptor { chain ->
+            .addInterceptor{ chain ->
                 var request = chain.request()
                 request = if (hasNetwork(context)) {
                     Log.e("testCashing", hasNetwork(context).toString())
@@ -104,11 +104,9 @@ object AppModule {
             .addInterceptor { chain ->
                 var request = chain.request()
                 request = if (hasNetwork(context)) {
-                    Log.e("testCashing", hasNetwork(context).toString())
                     request.newBuilder().header("Cache-Control", "public, max-age=" + 5).build()
 
                 } else {
-                    Log.e("testCashing", hasNetwork(context).toString())
                     request.newBuilder().header(
                         "Cache-Control",
                         "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7

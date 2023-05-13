@@ -15,10 +15,18 @@ import javax.inject.Inject
 
 @HiltViewModel
  class ListViewModel @Inject constructor(val  apiServices: ApiServices) : ViewModel() {
-
+    val postsList = MutableLiveData<Posts>()
     val list = Pager(PagingConfig(pageSize = 10)) {ListRepo(apiServices)}.liveData.cachedIn(viewModelScope)
 
+     suspend fun getAllPostsRequest() :Response<Posts>{
+       var response = apiServices.getPosts(1)
+         postsList.postValue(response.body())
+         return response
+     }
 
+    fun postsList() : LiveData<Posts> {
+        return postsList
+    }
 
 }
 

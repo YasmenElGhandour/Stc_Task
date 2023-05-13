@@ -11,11 +11,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 
- open class ListRepo @Inject constructor(val apiServices: ApiServices ) : PagingSource<Int, PostsResult>() {
-
-     val _postsResponse = MutableLiveData<Response<Posts>>()
-     val postsResponse : LiveData<Response<Posts>>
-         get() = _postsResponse
+  class ListRepo @Inject constructor(val apiServices: ApiServices ) : PagingSource<Int, PostsResult>() {
 
     override fun getRefreshKey(state: PagingState<Int, PostsResult>): Int? {
         return state.anchorPosition?.let {
@@ -30,8 +26,6 @@ import javax.inject.Inject
         return try {
 
             var response = getPosts(page)
-            _postsResponse.postValue(response)
-
             LoadResult.Page(
                 data = response.body()?.posts!!,
                 prevKey = if (page == 1) null else page - 1 ,
@@ -50,8 +44,6 @@ import javax.inject.Inject
 
      }
 
-     fun getResponse() : MutableLiveData<Response<Posts>>{
-         return _postsResponse
-     }
+
 
  }

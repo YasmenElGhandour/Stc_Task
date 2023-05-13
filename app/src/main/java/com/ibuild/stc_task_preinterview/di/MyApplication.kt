@@ -5,11 +5,12 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.multidex.MultiDex
 import dagger.hilt.android.HiltAndroidApp
 
 
 @HiltAndroidApp
-class MyApplication : Application() {
+open class MyApplication : Application() {
 
     companion object {
         var instance: MyApplication? = null
@@ -18,10 +19,11 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        MultiDex.install(this);
+
         if (instance == null) {
             instance = this
         }
-
 
     }
 
@@ -32,5 +34,6 @@ class MyApplication : Application() {
             isConnected = true
         return isConnected
     }
+
 
 }

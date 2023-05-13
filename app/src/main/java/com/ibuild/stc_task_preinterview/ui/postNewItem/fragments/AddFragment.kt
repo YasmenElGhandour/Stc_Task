@@ -57,9 +57,7 @@ class AddFragment : Fragment() {
         binding.cameraBtn.setOnClickListener { capturePhoto() }
         binding.galleryBtn.setOnClickListener { openGallery() }
         binding.addBtn.setOnClickListener {
-
-            if (isValidTitle() && isValidImage())
-                addNewPost()
+            if (isValidTitle() && isValidImage()) addNewPost()
         }
     }
 

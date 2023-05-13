@@ -22,10 +22,6 @@ class MyApplication  : Application(){
         }
     }
 
-    fun getInstance(): MyApplication? {
-        return instance
-    }
-
      fun isNetworkConnected(): Boolean {
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo

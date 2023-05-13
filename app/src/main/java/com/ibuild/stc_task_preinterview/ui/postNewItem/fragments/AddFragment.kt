@@ -37,7 +37,7 @@ import java.io.IOException
 @AndroidEntryPoint
 class AddFragment : Fragment() {
 
-    lateinit var filePartImage: MultipartBody.Part
+    var filePartImage: MultipartBody.Part? = null
     lateinit var binding: FragmentAddBinding
     val viewModel: AddItemViewModel by viewModels()
     var uri: Uri? = null
@@ -85,7 +85,7 @@ class AddFragment : Fragment() {
     }
 
     private fun addNewPost() {
-        context?.let { viewModel.addNewPost(it, binding.addtitleEdt.text.toString(), filePartImage) }
+        context?.let { viewModel.addNewPost(it, binding.addtitleEdt.text.toString(), filePartImage!!) }
         observePostsList()
     }
 

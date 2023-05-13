@@ -9,5 +9,6 @@
     <string name="message">Your Photo Added Successfully</string>
     <string name="title_validation"> please add title</string>
     <string name="image_validation"> please add image</string>
+    <string name="server_error">some thing went wrong</string>
 
 </resources>

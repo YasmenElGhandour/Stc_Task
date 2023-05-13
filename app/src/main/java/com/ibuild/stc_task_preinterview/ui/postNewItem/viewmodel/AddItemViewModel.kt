@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.ibuild.stc_task_preinterview.R
 import com.ibuild.stc_task_preinterview.data.model.PostsResult
 import com.ibuild.stc_task_preinterview.ui.postNewItem.repositry.AddItemRepository
@@ -36,9 +37,10 @@ class AddItemViewModel @Inject constructor(var addItemRepository: AddItemReposit
 
     fun addNewPost(context: Context, title: String, filePart: MultipartBody.Part) {
         if (isValidImage(context, filePart) && isValidTitle(context, title))
-            GlobalScope.launch {
+            viewModelScope.launch {
                 try {
-                    postLiveData.postValue(addItemRepository.addNewPost(title, title, filePart).body())
+                    val response = addItemRepository.addNewPost(title, title, filePart)
+                    postLiveData.postValue(response.body())
                 } catch (e: Exception) {
                     Log.d("addNewPost", e.toString())
                 }

@@ -11,7 +11,7 @@ import javax.inject.Inject
 class AddItemRepository @Inject constructor(val  apiServices: ApiServices)
 {
 
-    suspend fun addNewPost(title: String,details: String, image: MultipartBody.Part) : retrofit2.Response<PostsResult> {
+    suspend fun addNewPost(title: String,details: String, image: MultipartBody.Part?) : retrofit2.Response<PostsResult> {
       return  apiServices.addNewPost(title = title, details = details, image =image)
     }
 

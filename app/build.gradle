@@ -9,6 +9,7 @@ plugins {
 
 }
 
+
 android {
     namespace 'com.ibuild.stc_task_preinterview'
     compileSdk 33
@@ -20,7 +21,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.ibuild.stc_task_preinterview.di.CustomTestRunner"
     }
 
     buildTypes {
@@ -42,6 +43,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 }
 
 dependencies {
@@ -50,12 +52,13 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
     // retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'androidx.test:monitor:1.6.1'
+    implementation 'androidx.test:core-ktx:1.5.0'
+    implementation 'androidx.test:runner:1.5.2'
 
     def lifecycle_version = "2.6.1"
 // ViewModel
@@ -98,9 +101,41 @@ dependencies {
     implementation("androidx.paging:paging-runtime:$paging_version")
     implementation 'androidx.paging:paging-common-ktx:3.1.1'
 
+    //testing....
+
     //truth
     testImplementation "com.google.truth:truth:1.1.3"
     androidTestImplementation "com.google.truth:truth:1.1.3"
+
+    // Mock web server
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.10.0'
+
+    // Coroutine test
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.junit.platform:junit-platform-commons:1.5.2'
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation "org.robolectric:robolectric:4.0.2"
+
+    // For Robolectric tests.
+    testImplementation("com.google.dagger:hilt-android-testing:2.28-alpha")
+    // ...with Kotlin.
+    kaptTest("com.google.dagger:hilt-android-compiler:2.28-alpha")
+
+    // For instrumented tests.
+    debugImplementation("com.google.dagger:hilt-android-testing:2.28-alpha")
+    // ...with Kotlin.
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.28-alpha")
+
+    testImplementation "io.mockk:mockk-android:1.13.5"
+
+    testImplementation "org.mockito:mockito-core:3.6.0"
+    // Optional -- mockito-kotlin
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+
 }
 
 kapt {

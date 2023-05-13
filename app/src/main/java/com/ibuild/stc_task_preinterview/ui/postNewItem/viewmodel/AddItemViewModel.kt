@@ -35,7 +35,7 @@ class AddItemViewModel @Inject constructor(var addItemRepository: AddItemReposit
     val postLiveData = MutableLiveData<PostsResult>()
     lateinit var filePartImage: MultipartBody.Part
 
-    fun addNewPost(context: Context, title: String, filePart: MultipartBody.Part) {
+    fun addNewPost(context: Context, title: String, filePart: MultipartBody.Part ?) {
         if (isValidImage(context, filePart) && isValidTitle(context, title))
             viewModelScope.launch {
                 try {
@@ -59,7 +59,7 @@ class AddItemViewModel @Inject constructor(var addItemRepository: AddItemReposit
             return true
     }
 
-    fun isValidImage(context: Context, filePartImage: MultipartBody.Part): Boolean {
+    fun isValidImage(context: Context, filePartImage: MultipartBody.Part?): Boolean {
         if (filePartImage != null)
             return true
         else {

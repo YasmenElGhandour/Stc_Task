@@ -4,29 +4,32 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import androidx.core.content.ContextCompat.getSystemService
 import dagger.hilt.android.HiltAndroidApp
-import okhttp3.Cache
 
 
 @HiltAndroidApp
-class MyApplication  : Application(){
+class MyApplication : Application() {
 
-    private var instance: MyApplication? = null
-    var isConnected: Boolean = false // Initial Value
-
+    companion object {
+        var instance: MyApplication? = null
+        var isConnected: Boolean = false // Initial Value
+    }
 
     override fun onCreate() {
         super.onCreate()
         if (instance == null) {
             instance = this
         }
+
+
     }
 
-     fun isNetworkConnected(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun isNetworkConnected(): Boolean {
+        val connectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
         if (activeNetwork != null && activeNetwork.isConnected)
-         isConnected = true
+            isConnected = true
         return isConnected
     }
 

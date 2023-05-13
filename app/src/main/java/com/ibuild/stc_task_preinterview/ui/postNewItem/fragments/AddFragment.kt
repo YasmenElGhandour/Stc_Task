@@ -55,7 +55,9 @@ class AddFragment : Fragment() {
 
     private fun initViews() {
         binding.addImgCard.setOnClickListener { openBottomSheet() }
-        binding.addBtn.setOnClickListener { addNewPost()}
+        binding.addBtn.setOnClickListener {
+            addNewPost()
+        }
     }
 
     private fun openBottomSheet() {
@@ -85,7 +87,7 @@ class AddFragment : Fragment() {
     }
 
     private fun addNewPost() {
-        context?.let { viewModel.addNewPost(it, binding.addtitleEdt.text.toString(), filePartImage!!) }
+        context?.let { viewModel.addNewPost(it, binding.addtitleEdt.text.toString(), filePartImage) }
         observePostsList()
     }
 

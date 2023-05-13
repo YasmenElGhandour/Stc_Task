@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -57,12 +58,45 @@
   </EditText>
 
     <TextView
-        android:id="@+id/addBtn"
+        android:id="@+id/cameraBtn"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addtitleEdt"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="30dp"
+        android:background="@drawable/shap_button_light_bg"
+        android:text="@string/take_picture"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+
+        ></TextView>
+
+    <TextView
+        android:id="@+id/galleryBtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cameraBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="30dp"
+        android:background="@drawable/shap_button_light_bg"
+        android:text="@string/open_gallery"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+
+        ></TextView>
+    <TextView
+        android:id="@+id/addBtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/galleryBtn"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="30dp"
         android:background="@drawable/shap_button_red_bg"

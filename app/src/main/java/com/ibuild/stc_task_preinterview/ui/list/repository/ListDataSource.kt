@@ -23,8 +23,9 @@ import javax.inject.Inject
 
         return try {
 
-            val data = apiServices.getPosts(page)
+            var data = apiServices.getPosts(page)
             Log.d("TAG", "load: ${data.body()}")
+
             LoadResult.Page(
                 data = data.body()?.posts!!,
                 prevKey = if (page == 1) null else page - 1,
@@ -32,9 +33,12 @@ import javax.inject.Inject
             )
 
 
+
         } catch (e: Exception) {
+
             e.printStackTrace()
             LoadResult.Error(e)
+
         }
 
 

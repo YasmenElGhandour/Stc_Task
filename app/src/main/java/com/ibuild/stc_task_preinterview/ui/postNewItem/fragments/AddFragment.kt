@@ -58,25 +58,43 @@ class AddFragment : Fragment() {
     private fun initViews() {
         binding.cameraBtn.setOnClickListener { capturePhoto() }
         binding.galleryBtn.setOnClickListener { openGallery() }
-        binding.addBtn.setOnClickListener { addNewPost() }
+        binding.addBtn.setOnClickListener {
+
+            if (isValidTitle() && isValidImage())
+                addNewPost()
+        }
+    }
+
+    private fun isValidTitle(): Boolean {
+        if (!binding.addtitleEdt.text.toString().isNullOrEmpty()) {
+            return true
+        } else {
+            showMessage(resources.getString(R.string.title_validation))
+            binding.addtitleEdt.error
+            return false
+        }
+    }
+
+    private fun isValidImage(): Boolean {
+        if (filePartImage != null)
+            return true
+        else {
+            showMessage(resources.getString(R.string.image_validation))
+            return false
+        }
     }
 
     private fun addNewPost() {
-        try {
-            viewModel.addNewPost(binding.addtitleEdt.text.toString(), filePartImage)
-            viewModel.observePostsLiveData().observe(viewLifecycleOwner) {
-
-                showMessage()
-                findNavController().popBackStack()
-            }
-        } catch (e: IOException) {
-            Log.d("errorApi", e.toString())
+        viewModel.addNewPost(binding.addtitleEdt.text.toString(), filePartImage)
+        viewModel.observePostsLiveData().observe(viewLifecycleOwner) {
+            showMessage(resources.getString(R.string.message))
+            findNavController().popBackStack()
         }
 
     }
 
-    private fun showMessage() {
-        Toast.makeText(context,resources.getString(R.string.message),Toast.LENGTH_LONG).show()
+    private fun showMessage(msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }
 
     override fun onResume() {
@@ -128,10 +146,12 @@ class AddFragment : Fragment() {
             }
         }
     }
-    fun getImageUriFromBitmap(context: Context, bitmap: Bitmap): Uri{
+
+    fun getImageUriFromBitmap(context: Context, bitmap: Bitmap): Uri {
         val bytes = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(context.contentResolver, bitmap, "Title", null)
+        val path =
+            MediaStore.Images.Media.insertImage(context.contentResolver, bitmap, "Title", null)
         return Uri.parse(path.toString())
     }
 

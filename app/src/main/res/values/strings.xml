@@ -7,5 +7,7 @@
     <string name="take_picture">Take Picture</string>
     <string name="open_gallery">Open Gallery</string>
     <string name="message">Your Photo Added Successfully</string>
+    <string name="title_validation"> please add title</string>
+    <string name="image_validation"> please add image</string>
 
 </resources>

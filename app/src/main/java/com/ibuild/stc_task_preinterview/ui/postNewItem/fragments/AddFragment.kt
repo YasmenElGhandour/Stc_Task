@@ -22,6 +22,7 @@ import androidx.navigation.fragment.findNavController
 import com.ibuild.stc_task_preinterview.R
 import com.ibuild.stc_task_preinterview.databinding.FragmentAddBinding
 import com.ibuild.stc_task_preinterview.ui.postNewItem.viewmodel.AddItemViewModel
+import com.ibuild.stc_task_preinterview.utils.common.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -31,10 +32,7 @@ import java.io.IOException
 
 @AndroidEntryPoint
 class AddFragment : Fragment() {
-    private val REQUEST_PERMISSION = 100
-    private val REQUEST_IMAGE_CAPTURE = 1
-    private val REQUEST_PICK_IMAGE = 2
-    lateinit var filePart: MultipartBody.Part
+
     lateinit var filePartImage: MultipartBody.Part
 
 
@@ -109,14 +107,14 @@ class AddFragment : Fragment() {
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.CAMERA),
-                REQUEST_PERMISSION
+                Constants.REQUEST_PERMISSION
             )
         }
     }
 
     fun capturePhoto() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, Constants.REQUEST_IMAGE_CAPTURE)
     }
 
     private fun openGallery() {
@@ -124,7 +122,7 @@ class AddFragment : Fragment() {
             intent.type = "image/*"
             activity?.packageManager?.let {
                 intent.resolveActivity(it)?.also {
-                    startActivityForResult(intent, REQUEST_PICK_IMAGE)
+                    startActivityForResult(intent, Constants.REQUEST_PICK_IMAGE)
                 }
             }
         }
@@ -132,11 +130,11 @@ class AddFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == RESULT_OK) {
-            if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            if (requestCode == Constants.REQUEST_IMAGE_CAPTURE) {
                 val bitmap = data?.extras?.get("data") as Bitmap
                 binding.addImg.setImageBitmap(bitmap)
                 uploadFile(context?.let { getImageUriFromBitmap(it, bitmap) })
-            } else if (requestCode == REQUEST_PICK_IMAGE) {
+            } else if (requestCode == Constants.REQUEST_PICK_IMAGE) {
                 val uri = data?.data
                 binding.addImg.setImageURI(uri)
                 data?.let { data ->

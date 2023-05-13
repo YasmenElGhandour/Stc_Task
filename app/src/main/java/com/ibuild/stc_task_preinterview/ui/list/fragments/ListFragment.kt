@@ -72,6 +72,7 @@ class ListFragment : Fragment(), onItemsClickListener<PostsResult> {
         binding.rvMovies.apply {
             layoutManager = GridLayoutManager(activity?.applicationContext, 2)
             adapter = postsAdapter
+            setHasFixedSize(true)
         }
     }
 

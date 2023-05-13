@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.ibuild.stc_task_preinterview.data.model.Posts
 import com.ibuild.stc_task_preinterview.data.model.PostsResult
 import com.ibuild.stc_task_preinterview.ui.postNewItem.repositry.AddItemRepository
+import com.ibuild.stc_task_preinterview.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -20,12 +21,11 @@ class AddItemViewModel @Inject constructor(var addItemRepository: AddItemReposit
      val postLiveData = MutableLiveData<PostsResult>()
 
      fun addNewPost(title: String, filePart: MultipartBody.Part) {
-
         GlobalScope.launch {
-            postLiveData.postValue(addItemRepository.addNewPost(title,title,filePart).body())
             try {
-            }catch (e:Exception){
+                postLiveData.postValue(addItemRepository.addNewPost(title,title,filePart).body())
 
+            }catch (e:Exception){
                 Log.d("addNewPost",e.toString())
             }
         }

@@ -8,9 +8,9 @@ class Constants {
     companion object {
         const val  BASE_URL="https://posts-demo-production.up.railway.app/"
         const val IMAGES_BASE_URL="https://posts-demo-production.up.railway.app/"
-        const val CACHE_SIZE = 5 * 1024 * 1024L // 5 MB
-        const val IMAGE_CHOOSE = 1000;
-        const val PERMISSION_CODE = 1001;
+        const val REQUEST_PERMISSION = 100
+        const val REQUEST_IMAGE_CAPTURE = 1
+        const val REQUEST_PICK_IMAGE = 2
     }
 
 }

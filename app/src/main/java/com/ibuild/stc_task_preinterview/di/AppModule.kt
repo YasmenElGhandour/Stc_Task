@@ -32,7 +32,7 @@ object AppModule {
     @Singleton
     fun hasNetwork(context: Context): Boolean {
         var context = context as MyApplication
-        return context.isNetworkConnected()
+        return context.isNetworkConnected(context)
     }
 
     @Provides

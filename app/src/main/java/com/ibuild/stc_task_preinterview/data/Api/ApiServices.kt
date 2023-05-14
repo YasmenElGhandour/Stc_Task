@@ -15,7 +15,7 @@ interface ApiServices {
 
     @Multipart
     @POST("api/posts")
-    suspend fun addNewPost(@Query("title") title: String, @Query("details") details: String,
+    suspend fun addNewPost(@Query("title") title: String?, @Query("details") details: String?,
                            @Part image: MultipartBody.Part?): Response<PostsResult>
 
 }

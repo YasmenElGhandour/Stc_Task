@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
@@ -16,28 +17,29 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.test.platform.app.InstrumentationRegistry
 import com.ibuild.stc_task_preinterview.R
 import com.ibuild.stc_task_preinterview.data.model.PostsResult
 import com.ibuild.stc_task_preinterview.ui.postNewItem.repositry.AddItemRepository
-import com.ibuild.stc_task_preinterview.utils.Resource
 import com.ibuild.stc_task_preinterview.utils.common.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import javax.inject.Inject
+
 
 @HiltViewModel
 class AddItemViewModel @Inject constructor(var addItemRepository: AddItemRepository) : ViewModel() {
     val postLiveData = MutableLiveData<PostsResult>()
     lateinit var filePartImage: MultipartBody.Part
 
-    fun addNewPost(context: Context, title: String, filePart: MultipartBody.Part ?) {
-        if (isValidImage(context, filePart) && isValidTitle(context, title))
-            viewModelScope.launch {
+    fun addNewPost(context: Context, title: String, filePart: MultipartBody.Part?, test: Boolean) {
+        viewModelScope.launch {
+        if (isValidImage(context, filePart,test) && isValidTitle(context, title,test))
                 try {
                     val response = addItemRepository.addNewPost(title, title, filePart)
                     postLiveData.postValue(response.body())
@@ -49,21 +51,31 @@ class AddItemViewModel @Inject constructor(var addItemRepository: AddItemReposit
 
     }
 
-    fun isValidTitle(context: Context, title: String): Boolean {
+
+     fun isValidTitle(context: Context, title: String , test:Boolean): Boolean {
         if (title.isNullOrEmpty()) {
             context?.let {
-                showMessage(context.resources.getString(R.string.title_validation), it)
+                if (!test)
+                    showMessage(context.resources.getString(R.string.title_validation), it)
+
             }
             return false
         } else
             return true
     }
 
-    fun isValidImage(context: Context, filePartImage: MultipartBody.Part?): Boolean {
+     fun isValidImage(context: Context, filePartImage: MultipartBody.Part?, test:Boolean): Boolean {
         if (filePartImage != null)
             return true
         else {
-            context?.let { showMessage(context.resources.getString(R.string.image_validation), it) }
+                context?.let {
+                    if (!test)
+                    showMessage(
+                        context.resources.getString(R.string.image_validation),
+                        it
+                    )
+                }
+
             return false
         }
     }
@@ -114,8 +126,9 @@ class AddItemViewModel @Inject constructor(var addItemRepository: AddItemReposit
         }
     }
 
-    fun showMessage(msg: String, context: Context) {
+     fun showMessage(msg: String, context: Context) {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
-    }
+
+     }
 
 }

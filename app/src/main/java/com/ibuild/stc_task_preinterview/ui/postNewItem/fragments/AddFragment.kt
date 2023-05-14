@@ -1,26 +1,17 @@
 package com.ibuild.stc_task_preinterview.ui.postNewItem.fragments
 
-import android.Manifest
 import android.app.Activity.RESULT_OK
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.ibuild.stc_task_preinterview.R
@@ -28,11 +19,7 @@ import com.ibuild.stc_task_preinterview.databinding.FragmentAddBinding
 import com.ibuild.stc_task_preinterview.ui.postNewItem.viewmodel.AddItemViewModel
 import com.ibuild.stc_task_preinterview.utils.common.Constants
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.toRequestBody
-import java.io.ByteArrayOutputStream
-import java.io.IOException
 
 @AndroidEntryPoint
 class AddFragment : Fragment() {
@@ -87,7 +74,7 @@ class AddFragment : Fragment() {
     }
 
     private fun addNewPost() {
-        context?.let { viewModel.addNewPost(it, binding.addtitleEdt.text.toString(), filePartImage) }
+        context?.let { viewModel.addNewPost(it, binding.addtitleEdt.text.toString(), filePartImage , false) }
         observePostsList()
     }
 

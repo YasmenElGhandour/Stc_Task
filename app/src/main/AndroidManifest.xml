@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest android:installLocation="auto" xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ibuild.stc_task_preinterview"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -21,6 +21,8 @@
         android:required="false" />
 
 
+
+    │
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -32,6 +34,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stc_Task_PreInterview"
         tools:targetApi="31">
+
+
+
         <activity
             android:name="com.ibuild.stc_task_preinterview.ui.MainActivity"
             android:exported="true">

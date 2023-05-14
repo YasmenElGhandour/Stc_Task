@@ -52,7 +52,7 @@ class AddItemViewModel @Inject constructor(var addItemRepository: AddItemReposit
     }
 
 
-     fun isValidTitle(context: Context, title: String , test:Boolean): Boolean {
+     fun isValidTitle(context: Context, title: String , test:Boolean=false): Boolean {
         if (title.isNullOrEmpty()) {
             context?.let {
                 if (!test)
@@ -64,7 +64,7 @@ class AddItemViewModel @Inject constructor(var addItemRepository: AddItemReposit
             return true
     }
 
-     fun isValidImage(context: Context, filePartImage: MultipartBody.Part?, test:Boolean): Boolean {
+     fun isValidImage(context: Context, filePartImage: MultipartBody.Part?, test:Boolean= false): Boolean {
         if (filePartImage != null)
             return true
         else {

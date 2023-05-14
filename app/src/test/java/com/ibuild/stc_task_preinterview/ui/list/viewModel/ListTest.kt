@@ -8,11 +8,9 @@ import com.ibuild.stc_task_preinterview.data.Api.ApiServices
 import com.ibuild.stc_task_preinterview.data.model.Posts
 import com.ibuild.stc_task_preinterview.data.model.PostsResult
 import com.ibuild.stc_task_preinterview.ui.list.repository.ListRepo
-import com.ibuild.stc_task_preinterview.ui.list.viewModel.ListViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.setMain
-import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -29,7 +27,7 @@ import java.util.concurrent.TimeoutException
 
 @ExperimentalCoroutinesApi
 @RunWith(JUnit4::class)
-class ListViewModelTest {
+class ListTest {
 
     private val testDispatcher = TestCoroutineDispatcher()
     lateinit var mainViewModel: ListViewModel
